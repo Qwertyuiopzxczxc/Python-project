@@ -1,28 +1,40 @@
-""" Сделал рандом и чтобы печтало какая система и все про нее...
-"""
+from selectors import SelectSelector
 
-import os
-import sys
-import platform
-import datetime
-import random
-import shutil
+num1 = int(input("vvedite ciclovoe znachenie"))
+num2 = int(input("vvedite ciclovoe znachenie"))
+char = input("vvedite znak dlya operacii
 
-os_name = platform.system()
-os_version = platform.version()
-os_arch = platform.architecture()[0]
-os_platform = platform.platform()
-current_time = datetime.datetime.now()
-sys_in = sys.path
+if char == "+":
+    print(num1+num2)
+elif char == "-":
+    print(num1-num2)
+elif char == "*":
+    print(num1*num2)
+elif char == "/":
+    print(num1/num2)
+elif char == "%":
+    print(num1/num2)
+elif char == "//":
+    print(num1/num2)
+elif char == "**":
+    print(num1**num2)
 
-number = random.randint(1400, 1488)
-if number == 1488:
-    print("Посхалко")
-else:
-    print("тебе не повезло!", "тебе выпало число", number)
-print(f'Текущая система: {os_name} \n'
-      f'Версия система: {os_version} \n'
-      f'Архитектура: {os_arch} \n'
-      f'Платформа ОС {os_platform} \n'
-      f'Дата и время: {current_time} \n')
 
+num1 = int(input("vvedite ciclovoe znachenie"))
+num2 = int(input("vvedite ciclovoe znachenie"))
+char = input("vvedite znak dlya operacii
+
+if char == "+":
+    print(num1+num2)
+elif char == "-":
+    print(num1-num2)
+elif char == "*":
+    print(num1*num2)
+elif char == "/":
+    print(num1/num2)
+elif char == "%":
+    print(num1/num2)
+elif char == "//":
+    print(num1/num2)
+elif char == "**":
+    print(num1**num2)
