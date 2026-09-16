@@ -1,0 +1,66 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Страница-1" id="zhkKQNbp-3oFGqUKbtQa">
+    <mxGraphModel dx="2828" dy="1570" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="OXFwkWUeEkW7td-A66dg-1" parent="1" style="text;html=1;fontSize=24;fontStyle=1;align=center;verticalAlign=middle;" value="«Нормализация таблицы &quot;Заказы&quot; до 3НФ»" vertex="1">
+          <mxGeometry height="50" width="1000" x="280" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="OXFwkWUeEkW7td-A66dg-2" parent="1" style="swimlane;horizontal=0;startSize=30;fillColor=#f5f5f5;html=1;fontStyle=1;fontSize=16;" value="1. 0НФ — исходная таблица" vertex="1">
+          <mxGeometry height="300" width="1420" x="20" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="OXFwkWUeEkW7td-A66dg-3" parent="OXFwkWUeEkW7td-A66dg-2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" value="&lt;table border=&quot;1&quot; cellpadding=&quot;6&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;&lt;tr bgcolor=&quot;#dae8fc&quot;&gt;&lt;th&gt;ID_заказа&lt;/th&gt;&lt;th&gt;Дата&lt;/th&gt;&lt;th&gt;Клиент&lt;/th&gt;&lt;th&gt;Телефон&lt;/th&gt;&lt;th&gt;Товары (наименование, цена, кол-во)&lt;/th&gt;&lt;th&gt;Сумма&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;01.09&lt;/td&gt;&lt;td&gt;Иванов П.&lt;/td&gt;&lt;td&gt;111-11-11&lt;/td&gt;&lt;td&gt;Яблоки (50р, 3шт), Сок (80р, 1шт)&lt;/td&gt;&lt;td&gt;230&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;01.09&lt;/td&gt;&lt;td&gt;Петров С.&lt;/td&gt;&lt;td&gt;222-22-22&lt;/td&gt;&lt;td&gt;Хлеб (40р, 2шт), Молоко (70р, 1шт)&lt;/td&gt;&lt;td&gt;150&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;02.09&lt;/td&gt;&lt;td&gt;Иванов П.&lt;/td&gt;&lt;td&gt;111-11-11&lt;/td&gt;&lt;td&gt;Яблоки (50р, 1шт)&lt;/td&gt;&lt;td&gt;50&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;03.09&lt;/td&gt;&lt;td&gt;Сидоров А.&lt;/td&gt;&lt;td&gt;333-33-33&lt;/td&gt;&lt;td&gt;Сок (80р, 2шт), Хлеб (40р, 1шт)&lt;/td&gt;&lt;td&gt;200&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="235" width="1380" x="20" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="OXFwkWUeEkW7td-A66dg-4" edge="1" parent="1" source="OXFwkWUeEkW7td-A66dg-2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontStyle=1;fontSize=15;endArrow=classic;" target="OXFwkWUeEkW7td-A66dg-5" value="→ 1НФ">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="OXFwkWUeEkW7td-A66dg-5" parent="1" style="swimlane;horizontal=0;startSize=30;fillColor=#e8f4f8;html=1;fontStyle=1;fontSize=16;" value="2. 1НФ — атомарные значения, один товар в строке" vertex="1">
+          <mxGeometry height="390" width="1420" x="20" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="OXFwkWUeEkW7td-A66dg-6" parent="OXFwkWUeEkW7td-A66dg-5" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" value="&lt;table border=&quot;1&quot; cellpadding=&quot;5&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;&lt;tr bgcolor=&quot;#dae8fc&quot;&gt;&lt;th&gt;ID_заказа&lt;/th&gt;&lt;th&gt;Дата&lt;/th&gt;&lt;th&gt;Клиент&lt;/th&gt;&lt;th&gt;Телефон&lt;/th&gt;&lt;th&gt;Наименование&lt;/th&gt;&lt;th&gt;Цена&lt;/th&gt;&lt;th&gt;Кол-во&lt;/th&gt;&lt;th&gt;Сумма&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;01.09&lt;/td&gt;&lt;td&gt;Иванов П.&lt;/td&gt;&lt;td&gt;111-11-11&lt;/td&gt;&lt;td&gt;Яблоки&lt;/td&gt;&lt;td&gt;50&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;230&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;01.09&lt;/td&gt;&lt;td&gt;Иванов П.&lt;/td&gt;&lt;td&gt;111-11-11&lt;/td&gt;&lt;td&gt;Сок&lt;/td&gt;&lt;td&gt;80&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;230&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;01.09&lt;/td&gt;&lt;td&gt;Петров С.&lt;/td&gt;&lt;td&gt;222-22-22&lt;/td&gt;&lt;td&gt;Хлеб&lt;/td&gt;&lt;td&gt;40&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;150&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;01.09&lt;/td&gt;&lt;td&gt;Петров С.&lt;/td&gt;&lt;td&gt;222-22-22&lt;/td&gt;&lt;td&gt;Молоко&lt;/td&gt;&lt;td&gt;70&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;150&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;02.09&lt;/td&gt;&lt;td&gt;Иванов П.&lt;/td&gt;&lt;td&gt;111-11-11&lt;/td&gt;&lt;td&gt;Яблоки&lt;/td&gt;&lt;td&gt;50&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;50&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;03.09&lt;/td&gt;&lt;td&gt;Сидоров А.&lt;/td&gt;&lt;td&gt;333-33-33&lt;/td&gt;&lt;td&gt;Сок&lt;/td&gt;&lt;td&gt;80&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;200&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;03.09&lt;/td&gt;&lt;td&gt;Сидоров А.&lt;/td&gt;&lt;td&gt;333-33-33&lt;/td&gt;&lt;td&gt;Хлеб&lt;/td&gt;&lt;td&gt;40&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;200&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="330" width="1380" x="20" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="OXFwkWUeEkW7td-A66dg-7" edge="1" parent="1" source="OXFwkWUeEkW7td-A66dg-5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontStyle=1;fontSize=15;endArrow=classic;" target="OXFwkWUeEkW7td-A66dg-8" value="→ 2НФ">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="OXFwkWUeEkW7td-A66dg-8" parent="1" style="swimlane;horizontal=0;startSize=30;fillColor=#fff0e6;html=1;fontStyle=1;fontSize=16;" value="3. 2НФ — устранение частичных зависимостей" vertex="1">
+          <mxGeometry height="250" width="1420" x="20" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="OXFwkWUeEkW7td-A66dg-9" parent="OXFwkWUeEkW7td-A66dg-8" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b68;fontSize=15;" value="&lt;table border=&quot;1&quot; cellpadding=&quot;8&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;&lt;tr&gt;&lt;th bgcolor=&quot;#dae8fc&quot;&gt;Клиенты&lt;/th&gt;&lt;th bgcolor=&quot;#dae8fc&quot;&gt;Товары&lt;/th&gt;&lt;th bgcolor=&quot;#dae8fc&quot;&gt;Заказы&lt;/th&gt;&lt;th bgcolor=&quot;#dae8fc&quot;&gt;Состав заказа&lt;/th&gt;&lt;/tr&gt;&lt;tr valign=&quot;top&quot;&gt;&lt;td&gt;&lt;b&gt;Клиент (PK)&lt;/b&gt;&lt;br&gt;Телефон&lt;/td&gt;&lt;td&gt;&lt;b&gt;Наименование (PK)&lt;/b&gt;&lt;br&gt;Цена&lt;/td&gt;&lt;td&gt;&lt;b&gt;ID_заказа (PK)&lt;/b&gt;&lt;br&gt;Дата&lt;br&gt;&lt;i&gt;Клиент (FK)&lt;/i&gt;&lt;br&gt;Сумма&lt;/td&gt;&lt;td&gt;&lt;i&gt;ID_заказа (FK)&lt;/i&gt;&lt;br&gt;&lt;i&gt;Наименование (FK)&lt;/i&gt;&lt;br&gt;Кол-во&lt;br&gt;&lt;b&gt;PK = (ID_заказа + Наименование)&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="165" width="1380" x="20" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="OXFwkWUeEkW7td-A66dg-10" edge="1" parent="1" source="OXFwkWUeEkW7td-A66dg-8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontStyle=1;fontSize=15;endArrow=classic;" target="OXFwkWUeEkW7td-A66dg-11" value="→ 3НФ">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="OXFwkWUeEkW7td-A66dg-11" parent="1" style="swimlane;horizontal=0;startSize=30;fillColor=#e8f5e9;html=1;fontStyle=1;fontSize=16;" value="4. 3НФ — финальная схема ER" vertex="1">
+          <mxGeometry height="500" width="1420" x="20" y="1190" as="geometry" />
+        </mxCell>
+        <mxCell id="OXFwkWUeEkW7td-A66dg-12" parent="OXFwkWUeEkW7td-A66dg-11" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=15;" value="&lt;b&gt;Клиенты&lt;/b&gt;&lt;br&gt;&lt;b&gt;Клиент (PK)&lt;/b&gt;&lt;br&gt;Телефон" vertex="1">
+          <mxGeometry height="110" width="240" x="80" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="OXFwkWUeEkW7td-A66dg-13" parent="OXFwkWUeEkW7td-A66dg-11" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=15;" value="&lt;b&gt;Товары&lt;/b&gt;&lt;br&gt;&lt;b&gt;Наименование (PK)&lt;/b&gt;&lt;br&gt;Цена" vertex="1">
+          <mxGeometry height="110" width="240" x="1100" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="OXFwkWUeEkW7td-A66dg-14" parent="OXFwkWUeEkW7td-A66dg-11" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=15;" value="&lt;b&gt;Заказы&lt;/b&gt;&lt;br&gt;&lt;b&gt;ID_заказа (PK)&lt;/b&gt;&lt;br&gt;Дата&lt;br&gt;&lt;i&gt;Клиент (FK) → Клиенты&lt;/i&gt;&lt;br&gt;Сумма" vertex="1">
+          <mxGeometry height="140" width="260" x="590" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="OXFwkWUeEkW7td-A66dg-15" parent="OXFwkWUeEkW7td-A66dg-11" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=15;" value="&lt;b&gt;Состав заказа&lt;/b&gt;&lt;br&gt;&lt;i&gt;ID_заказа (FK) → Заказы&lt;/i&gt;&lt;br&gt;&lt;i&gt;Наименование (FK) → Товары&lt;/i&gt;&lt;br&gt;Кол-во&lt;br&gt;&lt;b&gt;PK = (ID_заказа, Наименование)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="125" width="300" x="590" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="OXFwkWUeEkW7td-A66dg-16" edge="1" parent="1" source="OXFwkWUeEkW7td-A66dg-12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;fontStyle=1;fontSize=14;" target="OXFwkWUeEkW7td-A66dg-14" value="1 — *">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="OXFwkWUeEkW7td-A66dg-17" edge="1" parent="1" source="OXFwkWUeEkW7td-A66dg-14" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;fontStyle=1;fontSize=14;" target="OXFwkWUeEkW7td-A66dg-15" value="1 — *">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="OXFwkWUeEkW7td-A66dg-18" edge="1" parent="1" source="OXFwkWUeEkW7td-A66dg-13" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;fontStyle=1;fontSize=14;" target="OXFwkWUeEkW7td-A66dg-15" value="1 — *">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
