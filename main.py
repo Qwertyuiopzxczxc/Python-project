@@ -1,33 +1,51 @@
-"""## Версия 0.0.4
+"""## Версия 0.0.5
 
-    Точка входа в пиложение Task Manadger
-    --- decsription ---
-    приложение сохраняет
+    Точка входа в приложение Task Manager
+    --- description ---
+    Изменения:
+    - добавлена функция show_message (сообщения о результатах добавления, редактирования, удаления)
+    - доработана функция show_collection (принимает список и форматированно выводит его)
+    - исправлены ошибки с индексами и проверками ввода
 """
 
 collection = ['1','2'] #list
 
 task_number = 0
 
-is_start = True #flag
+is_running = True #flag
+
+def show_message(action, success, detail=""):
+    if success:
+        print(f"Успешно: {action} {detail}".strip())
+    else:
+        print(f"Ошибка: {action} {detail}".strip())
 
 def listcheck(task_collection, name):
     if name in task_collection:
-        print('Такая задача уже есть')
-        exit()
+        show_message("добавление", False, f"— задача «{name}» уже существует")
+        return True
     else:
-        pass
+        return False
+
 def show_collection(task_collection):
     print('=' * 30)
-    for task_number, j in enumerate(collection):
-        print(f"{task_number + 1}. {j}")
+    if not task_collection:
+        print("Список задач пуст.")
+    else:
+        for task_number, j in enumerate(task_collection, start=1):
+            print(f"{task_number}. {j}")
     print('=' * 30)
 
-while is_start:
+while is_running:
 
-    print("1 - показать задачи | 2 - добавить задачу | 3 - редактировать задачу | 4 - удалить задачу")
+    print("1 - показать задачи | 2 - добавить задачу | 3 - редактировать задачу | 4 - удалить задачу | 0 - выход")
 
-    choice_user = input('Введите ваш выбор ( 1 | 2 | 3 | 4 )')
+    choice_user = input('Введите ваш выбор ( 0 | 1 | 2 | 3 | 4 )')
+
+    if choice_user == '0':
+        print("Программа завершена.")
+        is_running = False
+        continue
 
     if choice_user == '1' or choice_user == '2' or choice_user == '3' or choice_user == '4':
         match int(choice_user):
@@ -38,39 +56,43 @@ while is_start:
                 task_name = input('Название задачи (или оставьте пустым): ')
                 match (task_name):
                     case "":
-                        task_name: str = 'task'
+                        task_name = 'task'
                         task_number += 1
                         collection.append(f"{task_name} {task_number}")
+                        show_message("добавление", True, f"— создана задача «{task_name} {task_number}»")
                     case _:
-                        listcheck(collection,task_name)
-                        collection.append(f"{task_name}")
+                        if not listcheck(collection, task_name):
+                            collection.append(f"{task_name}")
+                            show_message("добавление", True, f"— добавлена задача «{task_name}»")
             case 3:
                 show_collection(collection)
-                select_edit = (input('введите номер задачи'))
-                if int(select_edit.isdigit()):
+                select_edit = input('введите номер задачи')
+                if select_edit.isdigit():
                     if int(select_edit) > 0 and int(select_edit) <= len(collection):
                         edit_name = input('новое имя задачи')
-                        collection[int(select_edit)] = edit_name
-                        print(f"задача '{int(select_edit)}' '{edit_name}' успешно отредактированна!")
+                        old_name = collection[int(select_edit) - 1]
+                        collection[int(select_edit) - 1] = edit_name
+                        show_message("редактирование", True, f"— «{old_name}» → «{edit_name}»")
                     else:
-                        print('Задачи с таким номером нет в списке')
+                        show_message("редактирование", False, "— задачи с таким номером нет в списке")
                 else:
-                    print('!!!')
+                    show_message("редактирование", False, "— введите номер задачи")
 
 
             case 4:
                 show_collection(collection)
                 delete_edit = input('введите номер задачи')
-                if int(delete_edit.isdigit()):
+                if delete_edit.isdigit():
                     if int(delete_edit) > 0 and int(delete_edit) <= len(collection):
-                        collection.pop(int(delete_edit))
+                        removed = collection.pop(int(delete_edit) - 1)
+                        show_message("удаление", True, f"— удалена задача «{removed}»")
                     else:
-                        print('Задачи с таким номером нет в списке')
+                        show_message("удаление", False, "— задачи с таким номером нет в списке")
                 else:
-                    print('Введите номер задачи!!!')
+                    show_message("удаление", False, "— введите номер задачи")
             case _:
 
-                print('такого пункта нет!')
+                show_message("выбор", False, "— такого пункта нет")
 
-    elif choice_user != '1' or choice_user != '2' or choice_user != '3' or choice_user != '4':
-        pass
+    else:
+        show_message("выбор", False, "— такого пункта нет")
