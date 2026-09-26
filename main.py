@@ -1,22 +1,43 @@
-"""Основной файл приложения
+"""Основной файл приложения Task Manager
 
-    версия 0.0.5
+версия 0.0.7
 
-    === Описание ===
-        Приложение может сохранять задачи, выдаёт список задач,
-        может удалять и редактировать задачи.
+=== Описание ===
+    Приложение может сохранять задачи, выдаёт список задач,
+    может удалять и редактировать задачи.
+    Задачи сохраняются в файл tasks.txt.
 """
 
 import processes
+import os
 
-collection = ['task1', 'task2']  # список задач
-is_running = True
+FILENAME = "tasks.txt"
 
 
-def show_collection():
+def load_tasks():
+    """Загружает задачи из файла"""
+    if not os.path.exists(FILENAME):
+        return []
+    with open(FILENAME, "r", encoding="utf-8") as file:
+        tasks = [line.strip() for line in file if line.strip()]
+    return tasks
+
+
+def save_tasks(task_collection):
+    """Сохраняет задачи в файл"""
+    with open(FILENAME, "w", encoding="utf-8") as file:
+        for task in task_collection:
+            file.write(task + "\n")
+
+
+def show_collection(task_collection):
+    """Красивый вывод списка задач"""
     print("=" * 45)
-    for i, task in enumerate(collection):
-        print(i + 1, task)
+    if not task_collection:
+        print("Список задач пуст")
+    else:
+        for i, task in enumerate(task_collection, start=1):
+            print(f"{i}. {task}")
     print("=" * 45)
 
 
@@ -27,67 +48,86 @@ def show_menu():
     print("4 - Удалить задачу")
     print("5 - Выход")
 
-def check_confirm(select_task, task_list):
-    if (select_task.isdigit()):
-        if(select_task > 0 and select_task <= len(task_list)):
-            return 1
-        else:
-            return 2
-    else:
-        return 3
 
-def delete_task(task_collection):
-    delete_tasks = input("Введите номер задачи для управления")
-    if check_confirm(delete_tasks, task_collection):
-        task_collection.pop(int(delete_tasks)-1)
-        print(f"Задача с номером {delete_tasks} успешно удалена")
-    elif check_confirm(delete_tasks, task_collection) == 2:
-        print(f"Задачи с номером {delete_tasks} нет в списке")
-    elif check_confirm(delete_tasks, task_collection) == 3:
-        print(f"Введите именно номер задачи!")
+def edited_task(task_collection):
+    """Редактирует задачу (вызывается в case 3)"""
+    if not task_collection:
+        print("Список задач пуст. Нечего редактировать.")
+        return
 
-def edit_task(task_collection):
-    selected_task = input("Введите номер задачи")
-    if check_confirm(selected_task, task_collection) == 2 :
-        new_task = input("новое имя задачи")
-        task_collection[int(new_task)-1] = new_task
-
-
-while is_running:
-    show_menu()
-    choice_user = input("Введите ваш выбор: ")
-
-    match choice_user:
-        case "1":
-            show_collection()
-            processes.show_message("Список задач показан")
-
-        case "2":
-            new_task = input("Введите имя задачи для добавления: ")
-            if len(new_task) < 2 :
-                print("название не может быть пустым!")
-                continue
-            else:
-                collection.append(new_task)
-            collection.append(new_task)
-            processes.show_message("Задача добавлена")
-
-        case "3":
-            show_collection()
-            select = int(input("Введите номер задачи: "))
-            new_name = input("Введите новое имя задачи: ")
-            collection[select - 1] = new_name
+    show_collection(task_collection)
+    try:
+        select = int(input("Введите номер задачи для редактирования: "))
+        if 1 <= select <= len(task_collection):
+            new_name = input("Введите новое имя задачи: ").strip()
+            if len(new_name) < 2:
+                print("Название не может быть слишком коротким!")
+                return
+            task_collection[select - 1] = new_name
+            save_tasks(task_collection)
             processes.show_message("Задача изменена")
+        else:
+            print("Задачи с таким номером нет!")
+    except ValueError:
+        print("Введите именно номер задачи!")
 
-        case "4":
-            show_collection()
-            delete = int(input("Введите номер задачи для удаления: "))
-            collection.pop(delete - 1)
-            processes.show_message("Задача удалена")
 
-        case "5":
-            is_running = False
-            processes.show_message("До свидания!")
+def deleted_task(task_collection):
+    """Удаляет задачу (вызывается в case 4)"""
+    if not task_collection:
+        print("Список задач пуст. Нечего удалять.")
+        return
 
-        case _:
-            processes.show_message("Такого пункта нет...")
+    show_collection(task_collection)
+    try:
+        select = int(input("Введите номер задачи для удаления: "))
+        if 1 <= select <= len(task_collection):
+            deleted = task_collection.pop(select - 1)
+            save_tasks(task_collection)
+            processes.show_message(f"Задача «{deleted}» удалена")
+        else:
+            print("Задачи с таким номером нет!")
+    except ValueError:
+        print("Введите именно номер задачи!")
+
+
+def main():
+    """Главная функция с циклом while"""
+    collection = load_tasks()   # загружаем задачи при старте
+    is_running = True
+
+    while is_running:
+        show_menu()
+        choice_user = input("Введите ваш выбор: ").strip()
+
+        match choice_user:
+            case "1":
+                show_collection(collection)
+                processes.show_message("Список задач показан")
+
+            case "2":
+                new_task = input("Введите имя задачи для добавления: ").strip()
+                if len(new_task) < 2:
+                    print("Название не может быть пустым или слишком коротким!")
+                    continue
+                collection.append(new_task)
+                save_tasks(collection)
+                processes.show_message("Задача добавлена")
+
+            case "3":
+                edited_task(collection)   # вызов функции вне цикла
+
+            case "4":
+                deleted_task(collection)  # вызов функции вне цикла
+
+            case "5":
+                is_running = False
+                processes.show_message("До свидания!")
+
+            case _:
+                processes.show_message("Такого пункта нет...")
+
+
+# Вызов главной функции в конце скрипта
+if __name__ == "__main__":
+    main()
