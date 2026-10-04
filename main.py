@@ -1,30 +1,26 @@
 """
                     === Основной файл приложения ===
 
-                          === Версия 0.0.9 ===
+                          === Версия 0.1.0 ===
 """
 
-from storege import load_tasks, save_tasks
+from storage import load_tasks, save_tasks
 from view import show_menu, show_collection
 from core import add_task, edit_task, delete_tasks
 from config import NAME_FILE_SAVES
 
-collection = []
-
 
 def main():
     name_file = NAME_FILE_SAVES
-
-    collection.extend(load_tasks(name_file))
+    collection = load_tasks(name_file)
 
     is_running = True
 
     while is_running:
         show_menu()
-        choice_user = input("Введите ваш выбор: ")
+        choice_user = input("Введите ваш выбор: ").strip()
 
         match choice_user:
-
             case "1":
                 show_collection(collection)
 
@@ -49,6 +45,7 @@ def main():
 
             case _:
                 print("Такого пункта нет...")
+
 
 if __name__ == "__main__":
     main()
