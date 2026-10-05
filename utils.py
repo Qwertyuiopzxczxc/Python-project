@@ -1,19 +1,31 @@
-# ======================================================
-#              Модуль, содержащий утилиты
-# ======================================================
+"""
+                                 === Функции проверки подтверждения ===
 
-def check_confirm(select_task: str, task_list: list) -> bool:
-    """
-    Проверяет, что введённый номер задачи корректный.
-    Возвращает True, если номер валидный, иначе False.
-    """
-    if not select_task.isdigit():
+                                    === Версия приложения: 0.0.9 ===
+"""
+import sys
+import os
+from tkinter.messagebox import RETRY
+
+### Проверка подтверждения
+def check_confirm(select_task, task_list):
+    if select_task.isdigit():
+        if 0 < int(select_task) <= len(task_list):
+            return True
+        else:
+            print(f"Задачи с номером {select_task} нет в списке!")
+            return False
+    else:
         print("Введите именно номер задачи!")
         return False
 
-    number = int(select_task)
-    if 0 < number <= len(task_list):
-        return True
+def get_base_din():
+    if getattr(sys, 'frozen', False):
+        return os.path.dirname(sys.executable)
+    else:
+        return os.path.dirname(os.path.realpath(__file__))
 
-    print(f"Задачи с номером {select_task} нет в списке!")
-    return False
+def insure_saves_file(name_file):
+    if not os.path.exists(name_file):
+        with open(name_file, 'w', encoding="utf-8"):
+            pass
