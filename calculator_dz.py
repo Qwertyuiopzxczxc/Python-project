@@ -1,8 +1,5 @@
 import tkinter as tk
 
-# 1. Tkinter уже входит в стандартную библиотеку Python,
-#    но если вдруг его нет — установите: pip install tk
-
 root = tk.Tk()
 root.title("Калькулятор")
 root.geometry("320x420")
@@ -21,16 +18,14 @@ text_input = tk.Label(
 )
 text_input.pack(fill="x", padx=10, pady=10)
 
-# Переменная для хранения текущего выражения
 expression = ""
 
-# Функция, которая обрабатывает нажатия (пункты 5 и 6)
 def button_click(value):
     global expression
 
     if value == "=":
         try:
-            # Заменяем % на /100 для процентов
+
             result = str(eval(expression.replace("%", "/100")))
             text_input.config(text=result)
             expression = result
@@ -41,7 +36,7 @@ def button_click(value):
         expression += str(value)
         text_input.config(text=expression)
 
-# 2. Создаём 10 кнопок с цифрами 0–9
+
 digits = ["7", "8", "9",
           "4", "5", "6",
           "1", "2", "3",
@@ -68,10 +63,9 @@ for digit in digits:
         col = 0
         row += 1
 
-# 3. Массив знаков арифметических операций
+
 operations = ["*", "%", "+", "-", "="]
 
-# 4. Создаём 5 кнопок операций через цикл for
 op_frame = tk.Frame(root)
 op_frame.pack(pady=5)
 
@@ -88,7 +82,6 @@ for op in operations:
     )
     btn.pack(side="left", padx=3)
 
-# Кнопка очистки (дополнительно, чтобы было удобно)
 clear_btn = tk.Button(
     root,
     text="C",
