@@ -1,4 +1,4 @@
-# Task Manager — Develop-App Course
+# Task Manager
 
 **Урок 13–14: Слоистая архитектура**
 
