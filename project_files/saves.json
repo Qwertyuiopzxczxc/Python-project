@@ -1,0 +1,10 @@
+[
+    {
+        "name": "Изучить слоистую архитектуру",
+        "content": "Понять разделение View / Interface / Storage / Core"
+    },
+    {
+        "name": "Сделать домашнее задание",
+        "content": "Создать AppLabel, AppListbox, перевести сохранение на JSON"
+    }
+]
